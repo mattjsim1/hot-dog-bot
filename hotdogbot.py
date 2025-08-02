@@ -256,5 +256,6 @@ async def on_message(message):
                             await message.channel.send("what")
                         case 3:
                             await message.channel.send("try again retardo")
-                break
+                    break
+                    
 client.run(TOKEN)
