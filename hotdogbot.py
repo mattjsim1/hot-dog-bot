@@ -74,6 +74,8 @@ balls_regex2 = re.compile(balls_regex_pattern2)
 
 banned_users = [631068575406358539]
 
+  
+
 @client.event
 async def on_message(message):
     if message.author == client.user or message.author.bot or message.author.id in banned_users:
@@ -229,5 +231,23 @@ async def on_message(message):
                         kickTable.append(msg.author.name)
             # output results of vote
             await message.channel.send("Kicked user " + user + " with " + str(count) + " votes! ", allowed_mentions=discord.AllowedMentions.none())
-            
+    # dice by Kaitar
+    if ',r dice' in message.content.lower():
+        inputDice = message.content.lower()
+        inputDice -= 'r dice'
+        inputDice = int(inputDice)
+        if inputDice >= 0 and inputDice <= 100:
+            await message.channel.send("Dice roll: " + random.randint(0, inputDice))
+        elif inputDice == 0:
+            await message.channel.send("You can't roll a 0 sided die, you fucking nimrod.")
+        else:
+            randResponse = random.random(1, 3)
+            match (randResponse):
+                case 1:
+                    await message.channel.send("ok")
+                case 2:
+                    await message.channel.send("what")
+                case 3:
+                    await message.channel.send("try again retardo")
+
 client.run(TOKEN)
