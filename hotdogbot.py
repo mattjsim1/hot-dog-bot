@@ -229,5 +229,7 @@ async def on_message(message):
                         kickTable.append(msg.author.name)
             # output results of vote
             await message.channel.send("Kicked user " + user + " with " + str(count) + " votes! ", allowed_mentions=discord.AllowedMentions.none())
-            
+    # dice by Kaitar
+    if message.content.lower() == ',r dice':
+        await message.channel.send("Dice roll: " + random.randint(1, 6))
 client.run(TOKEN)
