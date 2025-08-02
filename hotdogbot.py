@@ -234,20 +234,27 @@ async def on_message(message):
     # dice by Kaitar
     if ',r dice' in message.content.lower():
         inputDice = message.content.lower()
-        inputDice -= 'r dice'
-        inputDice = int(inputDice)
-        if inputDice >= 0 and inputDice <= 100:
-            await message.channel.send("Dice roll: " + random.randint(0, inputDice))
-        elif inputDice == 0:
-            await message.channel.send("You can't roll a 0 sided die, you fucking nimrod.")
-        else:
-            randResponse = random.random(1, 3)
-            match (randResponse):
-                case 1:
-                    await message.channel.send("ok")
-                case 2:
-                    await message.channel.send("what")
-                case 3:
-                    await message.channel.send("try again retardo")
-
+        
+        inputDice = inputDice.split()
+        
+        for i in inputDice():
+            if i == ',r' or i == "dice":
+                continue
+            else:
+                if inputDice >= 0 and inputDice <= 100:
+                    await message.channel.send("Dice roll: " + random.randint(0, inputDice))
+                    break
+                elif inputDice == 0:
+                    await message.channel.send("You can't roll a 0 sided die, you fucking nimrod.")
+                    break
+                else:
+                    randResponse = random.random(1, 3)
+                    match (randResponse):
+                        case 1:
+                            await message.channel.send("ok")
+                        case 2:
+                            await message.channel.send("what")
+                        case 3:
+                            await message.channel.send("try again retardo")
+                break
 client.run(TOKEN)
